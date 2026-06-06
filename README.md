@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # run_and_rule
 
 territory based running app
@@ -15,3 +16,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# run_and_rule
+Territory based running game
+>>>>>>> 38402e4bb8bd1607252112fe072ef6c9d94b7790
