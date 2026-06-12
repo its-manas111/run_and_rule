@@ -77,7 +77,7 @@ class _MapScreenState extends State<MapScreen> {
     final polygon = Polygon(
       polygonId: PolygonId(DateTime.now().toString()),
       points: List.from(_points),
-      fillColor: Colors.blue.withOpacity(0.3),
+      fillColor: Colors.blue.withValues(alpha: 0.3),
       strokeColor: Colors.blue,
       strokeWidth: 2,
     );
