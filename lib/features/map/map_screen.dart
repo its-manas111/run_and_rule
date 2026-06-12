@@ -11,10 +11,10 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   GoogleMapController? _controller;
-  Location _location = Location();
+  final Location _location = Location();
 
-  List<LatLng> _points = [];
-  Set<Polygon> _polygons = {};
+  final List<LatLng> _points = [];
+  final Set<Polygon> _polygons = {};
 
   static const CameraPosition _initialPosition = CameraPosition(
     target: LatLng(28.6139, 77.2090),
@@ -44,9 +44,11 @@ class _MapScreenState extends State<MapScreen> {
         final latLng =
             LatLng(currentLocation.latitude!, currentLocation.longitude!);
 
-        setState(() {
-          _points.add(latLng);
-        });
+        if (mounted) {
+          setState(() {
+            _points.add(latLng);
+          });
+        }
 
         _controller?.animateCamera(
           CameraUpdate.newLatLng(latLng),
@@ -80,32 +82,31 @@ class _MapScreenState extends State<MapScreen> {
       strokeWidth: 2,
     );
 
-    setState(() {
-      _polygons.add(polygon);
-      _points.clear(); // reset path
-    });
+    if (mounted) {
+      setState(() {
+        _polygons.add(polygon);
+        _points.clear(); // reset path
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Run & Rule Map")),
-      body: GoogleMap(
-        initialCameraPosition: _initialPosition,
-        polygons: _polygons,
-        onMapCreated: (controller) {
-          _controller = controller;
-        },
-        myLocationEnabled: true,
-        polylines: {
-          Polyline(
-            polylineId: const PolylineId("path"),
-            color: Colors.blue,
-            width: 5,
-            points: _points,
-          ),
-        },
-      ),
+    return GoogleMap(
+      initialCameraPosition: _initialPosition,
+      polygons: _polygons,
+      onMapCreated: (controller) {
+        _controller = controller;
+      },
+      myLocationEnabled: true,
+      polylines: {
+        Polyline(
+          polylineId: const PolylineId("path"),
+          color: Colors.blue,
+          width: 5,
+          points: _points,
+        ),
+      },
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'features/map/map_screen.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(const RunAndRuleApp());
@@ -11,26 +11,13 @@ class RunAndRuleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Run & Rule',
-      theme: ThemeData.dark(),
-      home: const MapScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Run & Rule")),
-      body: const Center(
-        child: Text(
-          "Ready to conquer territory 🏃‍♂️",
-          style: TextStyle(fontSize: 20),
-        ),
+      theme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: Colors.green,
       ),
+      home: const HomeScreen(),
     );
   }
 }
